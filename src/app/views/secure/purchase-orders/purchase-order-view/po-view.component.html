@@ -1,0 +1,182 @@
+<div class="mb-4">
+  <button
+    cButton
+    variant="outline"
+    color="info"
+    (click)="onBack()"
+    title="Click to go back"
+  >
+    <span class="min-width-18px">
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </span>
+    Back
+  </button>
+</div>
+
+<h3 class="mb-3">Purchase Order Details:</h3>
+
+<div class="row mt-4" *ngIf="purchaseOrder?.id">
+  <div class="col-12 col-md-8 col-lg-5">
+    <div class="row mb-2">
+      <div class="d-flex justify-content-between col-4">
+        <h6>PO No</h6>
+        <h6>&#10132;</h6>
+      </div>
+      <h6 class="col-8 text-break text-primary">
+        {{ purchaseOrder.id ? purchaseOrder.id : "-" }}
+      </h6>
+    </div>
+
+    <div class="row mb-2">
+      <div class="d-flex justify-content-between col-4">
+        <h6>PO Date</h6>
+        <h6>&#10132;</h6>
+      </div>
+      <h6 class="col-8 text-break text-primary">
+        {{ purchaseOrder.po_date | date : "dd/MM/yyyy" }}
+      </h6>
+    </div>
+
+    <div class="row mb-2">
+      <div class="d-flex justify-content-between col-4">
+        <h6>Godown</h6>
+        <h6>&#10132;</h6>
+      </div>
+      <h6 class="col-8 text-break text-primary">
+        {{ purchaseOrder.godown ? purchaseOrder.godown : "-" }}
+      </h6>
+    </div>
+
+    <div class="row mb-2">
+      <div class="d-flex justify-content-between col-4">
+        <h6>Vendor Address</h6>
+        <h6>&#10132;</h6>
+      </div>
+      <h6 class="col-8 text-break text-primary">
+        {{ purchaseOrder.vendor_address ? purchaseOrder.vendor_address : "-" }}
+      </h6>
+    </div>
+
+    <div class="row mb-2">
+      <div class="d-flex justify-content-between col-4">
+        <h6>Order Year</h6>
+        <h6>&#10132;</h6>
+      </div>
+      <h6 class="col-8 text-break text-primary">
+        {{ purchaseOrder.order_year ? purchaseOrder.order_year : "-" }}
+      </h6>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-8 col-lg-5">
+    <div class="row mb-2">
+      <div class="d-flex justify-content-between col-4">
+        <h6>Status</h6>
+        <h6>&#10132;</h6>
+      </div>
+      <h6 class="col-8 text-break text-primary">
+        {{ purchaseOrder.status ? purchaseOrder.status : "-" }}
+      </h6>
+    </div>
+
+    <div class="row mb-2">
+      <div class="d-flex justify-content-between col-4">
+        <h6>Region</h6>
+        <h6>&#10132;</h6>
+      </div>
+      <h6 class="col-8 text-break text-primary">
+        {{ purchaseOrder.region ? purchaseOrder.region : "-" }}
+      </h6>
+    </div>
+
+    <div class="row mb-2">
+      <div class="d-flex justify-content-between col-4">
+        <h6>Vendor Name</h6>
+        <h6>&#10132;</h6>
+      </div>
+      <h6 class="col-8 text-break text-primary">
+        {{ purchaseOrder.vendor_name ? purchaseOrder.vendor_name : "-" }}
+      </h6>
+    </div>
+
+    <div class="row mb-2">
+      <div class="d-flex justify-content-between col-4">
+        <h6>PO Days</h6>
+        <h6>&#10132;</h6>
+      </div>
+      <h6 class="col-8 text-break text-primary">
+        {{ purchaseOrder.po_days ? purchaseOrder.po_days : "-" }}
+      </h6>
+    </div>
+
+    <div class="row mb-2">
+      <div class="d-flex justify-content-between col-4">
+        <h6>Target Date</h6>
+        <h6>&#10132;</h6>
+      </div>
+      <h6 class="col-8 text-break text-primary">
+        {{ purchaseOrder.target_date | date : "dd/MM/yyyy" }}
+      </h6>
+    </div>
+  </div>
+</div>
+
+<hr />
+<h3 class="mt-4">Materials:</h3>
+<div class="table-responsive" *ngIf="!isLoading && materialList.length">
+  <table class="table table-hover mt-3" *ngFor="let material of materialList">
+    <thead class="bg-secondary">
+      <tr>
+        <th scope="col">
+          Title
+          <i class="text-info bi"></i>
+        </th>
+        <th scope="col">
+          Medium
+          <i class="text-info bi"></i>
+        </th>
+        <th scope="col">
+          Standard
+          <i class="text-info bi"></i>
+        </th>
+        <th scope="col">
+          Net Copies
+          <i class="text-info bi"></i>
+        </th>
+        <th scope="col">Size<i class="text-info bi"></i></th>
+        <th scope="col">Mode of Printing<i class="text-info bi"></i></th>
+        <th scope="col">Type of Copies<i class="text-info bi"></i></th>
+        <th scope="col">Actions<i class="text-info bi"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-white">
+        <td>{{ material.title }}</td>
+        <td>{{ material.medium }}</td>
+        <td>{{ material.standard }}</td>
+        <td>{{ material.net_copies }}</td>
+        <td>{{ material.size }}</td>
+        <td>{{ material.mode_of_printing }}</td>
+        <td>{{ material.type_of_copies }}</td>
+        <td>
+          <button
+            cButton
+            variant="outline"
+            color="info"
+            (click)="onViewMaterialDistribution(purchaseOrder.id, material.id)"
+            title="View material distributions"
+          >
+            Material Distribution
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+  <div class="spinner-border" role="status" *ngIf="isLoading"></div>
+  <h5 class="text-center mt-5" *ngIf="!isLoading && !materialList.length">
+    No list found
+  </h5>
+</div>

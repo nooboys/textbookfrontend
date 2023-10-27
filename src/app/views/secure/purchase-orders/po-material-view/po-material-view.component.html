@@ -1,0 +1,228 @@
+<div class="mb-3">
+  <button
+    cButton
+    variant="outline"
+    color="info"
+    (click)="onBackToPOView()"
+    title="Click to go back"
+  >
+    <span class="min-width-18px">
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </span>
+    Back
+  </button>
+</div>
+
+<div *ngIf="!isLoading && materialDistributionList">
+  <h3 class="mb-3 mt-4">Material Details</h3>
+
+  <div class="row mt-4" *ngIf="materialDistributionList.material.id">
+    <div class="col-12 col-md-8 col-lg-5">
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-4">
+          <h6>Title</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-8 text-break text-primary">
+          {{
+            materialDistributionList.material.title
+              ? materialDistributionList.material.title
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-4">
+          <h6>Medium</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-8 text-break text-primary">
+          {{
+            materialDistributionList.material.medium
+              ? materialDistributionList.material.medium
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-4">
+          <h6>Size</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-8 text-break text-primary">
+          {{
+            materialDistributionList.material.size
+              ? materialDistributionList.material.size
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-4">
+          <h6>Type of Copies</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-8 text-break text-primary">
+          {{
+            materialDistributionList.material.type_of_copies
+              ? materialDistributionList.material.type_of_copies
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-4">
+          <h6>Order Year</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-8 text-break text-primary">
+          {{
+            materialDistributionList.purchaseOrder.order_year
+              ? materialDistributionList.purchaseOrder.order_year
+              : "-"
+          }}
+        </h6>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-8 col-lg-5">
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-4">
+          <h6>Standard</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-8 text-break text-primary">
+          {{
+            materialDistributionList.material.standard
+              ? materialDistributionList.material.standard
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-4">
+          <h6>Net Copies</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-8 text-break text-primary">
+          {{
+            materialDistributionList.material.net_copies
+              ? materialDistributionList.material.net_copies
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-4">
+          <h6>Mode of Printing</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-8 text-break text-primary">
+          {{
+            materialDistributionList.material.mode_of_printing
+              ? materialDistributionList.material.mode_of_printing
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-4">
+          <h6>PO Days</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-8 text-break text-primary">
+          {{
+            materialDistributionList.purchaseOrder.po_days
+              ? materialDistributionList.purchaseOrder.po_days
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-4">
+          <h6>Target Date</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-8 text-break text-primary">
+          {{
+            materialDistributionList.purchaseOrder.target_date
+              | date : "dd/MM/YYYY"
+          }}
+        </h6>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+  <h3 class="mb-3 mt-4">Material Distributions</h3>
+
+  <div
+    class="table-responsive"
+    *ngIf="!isLoading && materialDistributionList.materialDistribution.length"
+  >
+    <table class="table table-hover">
+      <thead class="bg-secondary">
+        <tr>
+          <th scope="col">
+            Branch Name
+            <i class="text-info bi"></i>
+          </th>
+          <th scope="col">
+            Net Copies
+            <i class="text-info bi"></i>
+          </th>
+          <th scope="col">
+            Delivery status
+            <i class="text-info bi"></i>
+          </th>
+          <th scope="col">DL Type<i class="text-info bi"></i></th>
+          <th scope="col" class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="bg-white"
+          *ngFor="let material of materialDistributionList.materialDistribution"
+        >
+          <td>{{ material.branch.name }}</td>
+          <td>{{ material.net_copies }}</td>
+          <td>{{ material.delivery_status }}</td>
+          <td>{{ material.branch.dl_type }}</td>
+          <td>
+            <div class="d-flex gap-3">
+              <button
+                class="btn-view opacity-75 rounded-circle px-2 py-1 text-white fw-bolder mx-auto"
+                title="View"
+                (click)="onViewMaterialDistributionDetails(material.id)"
+                [disabled]="material.delivery_status === 'None'"
+              >
+                <i class="bi bi-eye-fill"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+  <div class="spinner-border" role="status" *ngIf="isLoading"></div>
+  <h5 class="text-center mt-5" *ngIf="!isLoading && !materialDistributionList">
+    No Details found
+  </h5>
+</div>
+<h5
+  *ngIf="!isLoading && !materialDistributionList.materialDistribution.length"
+  class="text-center mb-5"
+>
+  No Distributions to show
+</h5>

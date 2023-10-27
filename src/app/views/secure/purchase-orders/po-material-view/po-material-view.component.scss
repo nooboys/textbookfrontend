@@ -1,0 +1,21 @@
+.btn-view {
+  background: #89f3b3;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  i {
+    color: #078439;
+  }
+}
+
+.btn-view:hover:not(:disabled) {
+  background-color: #078439;
+  cursor: pointer;
+}
+
+.btn-view:hover:not(:disabled) i {
+  color: white;
+}
+
+.btn-view:disabled {
+  background: lightgray;
+}

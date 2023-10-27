@@ -1,0 +1,106 @@
+<div class="mb-3">
+  <div class="input-group row">
+    <div class="d-flex flex-column flex-sm-row justify-content-sm-between mb-3">
+      <h3>Purchase Orders</h3>
+    </div>
+    <div class="d-flex flex-column flex-sm-row justify-content-sm-between">
+      <div class="col-12 col-sm-6 col-md-5 col-lg-4 d-flex">
+        <input
+          type="search"
+          class="form-control input"
+          placeholder="Search"
+          [(ngModel)]="searchKeyWord"
+          (ngModelChange)="this.onSearchKeyWordChange.next($event)"
+          onkeypress="return event.charCode !== 32 || this.value.trim().length !== 0"
+        />
+        <button class="btn btn-secondary input-button" type="button">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+      <button
+        cButton
+        variant="outline"
+        class="mt-2"
+        color="info"
+        type="button"
+        title="Download PO Report as Excel"
+        (click)="onDownloadPoDetails()"
+        [disabled]="isPODownloading"
+      >
+        Download Report
+        <i
+          class="ms-1"
+          [ngClass]="
+            isPODownloading ? 'fa fa-spinner fa-spin' : 'fa fa-download'
+          "
+        ></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="bg-secondary">
+      <tr>
+        <th scope="col">S No</th>
+        <th scope="col">PO No</th>
+        <th scope="col">PO Date</th>
+        <th scope="col">
+          Status:
+          <select
+            [(ngModel)]="selectedPOStatus"
+            (change)="onFilterPOStatus()"
+            class="p-0"
+          >
+            <option value="All">All</option>
+            <option value="none">None</option>
+            <option value="partial">Partial</option>
+            <option value="full">Full</option>
+          </select>
+        </th>
+        <th scope="col">Vendor Name</th>
+        <th scope="col">Order Year</th>
+
+        <th scope="col">Target Date</th>
+        <th scope="col" class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!isLoading && poList.length">
+      <tr class="bg-white" *ngFor="let po of poList; let i = index">
+        <td>{{ i + serialNo }}</td>
+        <td>{{ po.po_no }}</td>
+        <td>{{ po.po_date | date : "dd/MM/yyyy" }}</td>
+        <td>{{ po.status }}</td>
+        <td>{{ po.vendor_name }}</td>
+        <td>{{ po.order_year }}</td>
+        <td>{{ po.target_date | date : "dd/MM/yyyy" }}</td>
+        <td>
+          <div class="gap-3 d-flex">
+            <button
+              class="btn-view opacity-75 rounded-circle px-2 py-1 text-white fw-bolder cursor-pointer view-button mx-auto"
+              title="View"
+              (click)="onView(po.id)"
+            >
+              <i class="bi bi-eye-fill"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h5 class="text-center m-auto w-100" *ngIf="poList.length === 0">
+  No data found
+</h5>
+
+<div class="d-flex justify-content-center mt-5">
+  <div class="spinner-border" role="status" *ngIf="isLoading"></div>
+</div>
+
+<div class="d-flex" *ngIf="poList?.length">
+  <app-pagination
+    class="mx-auto my-3"
+    [pagination]="pagination"
+    (pageChange)="onPageChange($event)"
+  ></app-pagination>
+</div>

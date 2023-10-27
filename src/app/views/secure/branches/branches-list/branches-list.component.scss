@@ -1,0 +1,56 @@
+.search {
+  border-right: 0px;
+}
+
+.search-button {
+  min-width: 112px;
+}
+
+.input-search {
+  max-width: 847px;
+}
+
+.select-search-type {
+  min-width: 120px;
+}
+
+.btn-view {
+  background: #89f3b3;
+  i {
+    color: #078439;
+  }
+}
+
+.bg-edit {
+  background: #bcbaf7;
+  transition: all 0.2s ease-in-out;
+  svg {
+    color: #230b34;
+  }
+}
+.bg-edit:hover {
+  background-color: #1e7bc6;
+  cursor: pointer;
+}
+.bg-edit:hover svg {
+  color: white;
+}
+
+.bg-delete {
+  background: #f795a0;
+  transition: all 0.2s ease-in-out;
+  svg {
+    color: #830000;
+  }
+}
+.bg-delete:hover {
+  background-color: red;
+  cursor: pointer;
+}
+.bg-delete:hover svg {
+  color: white;
+}
+.bg-delete svg {
+  color: black;
+  transition: all 0.2s ease-in-out;
+}

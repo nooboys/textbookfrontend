@@ -1,0 +1,13 @@
+<ng-select
+  placeholder="Enter the file tags"
+  bindLabel="name"
+  bindValue="id"
+  [addTag]="true"
+  [items]="recommendedTags"
+  [multiple]="true"
+  [searchable]="true"
+  [hideSelected]="true"
+  (change)="onTagChange($event)"
+  [(ngModel)]="selectedTags"
+>
+</ng-select>

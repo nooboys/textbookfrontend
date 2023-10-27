@@ -1,0 +1,42 @@
+<nav aria-label="pagination" *ngIf="pagination">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="pagination.is_first_page">
+      <button class="page-link d-flex" (click)="onNavigateToPage(1)">
+        <i class="bi bi-chevron-double-left"></i>
+        <span class="d-none d-sm-block"> First </span>
+      </button>
+    </li>
+    <li class="page-item" [class.disabled]="pagination.is_first_page">
+      <button
+        class="page-link d-flex"
+        (click)="onNavigateToPage(pagination.prev_page)"
+      >
+        <i class="bi bi-chevron-left"></i>
+        <span class="d-none d-sm-block"> Previous </span>
+      </button>
+    </li>
+    <li class="page-item disabled">
+      <button class="page-link">
+        Page {{ pagination.current_page }} of {{ pagination.total_pages }}
+      </button>
+    </li>
+    <li class="page-item" [class.disabled]="pagination.is_last_page">
+      <button
+        class="page-link d-flex"
+        (click)="onNavigateToPage(pagination.next_page)"
+      >
+        <span class="d-none d-sm-block"> Next </span>
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </li>
+    <li class="page-item" [class.disabled]="pagination.is_last_page">
+      <button
+        class="page-link d-flex"
+        (click)="onNavigateToPage(pagination.total_pages)"
+      >
+        <span class="d-none d-sm-block"> Last </span>
+        <i class="bi bi-chevron-double-right"></i>
+      </button>
+    </li>
+  </ul>
+</nav>

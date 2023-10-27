@@ -1,0 +1,309 @@
+<button
+  cButton
+  variant="outline"
+  color="info"
+  (click)="onBackToMaterialDistributionsView()"
+  title="Click to go back"
+>
+  <span class="min-width-18px">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+  </span>
+  Back
+</button>
+<div class="d-flex justify-content-center mt-5" *ngIf="isLoading">
+  <div class="spinner-border" role="status"></div>
+  <h5
+    class="text-center mt-5"
+    *ngIf="!isLoading && !materialDistributionDetails.material_delivery.id"
+  >
+    No Details found
+  </h5>
+</div>
+
+<div *ngIf="materialDistributionDetails?.material_delivery?.id && !isLoading">
+  <h3 class="mb-3 mt-4">Material Delivery Details</h3>
+
+  <div
+    class="row mt-4"
+    *ngIf="materialDistributionDetails.material_delivery.id"
+  >
+    <div class="col-12 col-xl-5">
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Delivery Status</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{
+            materialDistributionDetails.material_delivery.delivery_status
+              ? materialDistributionDetails.material_delivery.delivery_status
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Delivered Date</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{
+            materialDistributionDetails.book_receipt_voucher.delivery_date
+              | date : "dd/MM/yyy, h:mm a"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Received Quantity</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{ materialDistributionDetails.material_delivery.received_copies }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Balance Quantity</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{ materialDistributionDetails.material_delivery.balanced_copies }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Quantity / Bundle</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{ materialDistributionDetails.material_delivery.copies_per_bundle }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>No of Bundles</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{ materialDistributionDetails.material_delivery.received_bundles }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Quantity as Bundle</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{ materialDistributionDetails.material_delivery.qty_as_bundles }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Loose Copies</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{
+            materialDistributionDetails.material_delivery.received_loose_copies
+          }}
+        </h6>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-7">
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Delivery Challan No</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{ materialDistributionDetails.material_delivery.dv_no }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Delivery Challan Date</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{
+            materialDistributionDetails.material_delivery.dv_date
+              | date : "dd/MM/yyyy"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Delivery Challan Quantity</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{
+            materialDistributionDetails.material_delivery.dv_qty
+              ? materialDistributionDetails.material_delivery.dv_qty
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Delivery Challan Shortage Quantity</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{
+            materialDistributionDetails.material_delivery.dv_shortage_copies
+              ? materialDistributionDetails.material_delivery.dv_shortage_copies
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Defectives Count</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{ materialDistributionDetails.material_delivery.defectives_count }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Defectives Reason</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{
+            materialDistributionDetails.material_delivery.defective_reason
+              ? materialDistributionDetails.material_delivery.defective_reason
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Weights</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{
+            materialDistributionDetails.material_delivery.weights
+              ? materialDistributionDetails.material_delivery.weights
+              : "-"
+          }}
+        </h6>
+      </div>
+
+      <div class="row mb-2">
+        <div class="d-flex justify-content-between col-5">
+          <h6>Remarks</h6>
+          <h6>&#10132;</h6>
+        </div>
+        <h6 class="col-7 text-break text-primary">
+          {{
+            materialDistributionDetails.material_delivery.remarks
+              ? materialDistributionDetails.material_delivery.remarks
+              : "-"
+          }}
+        </h6>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+  <h3 class="mb-3 mt-5">Challan Image</h3>
+  <div
+    class="voucher-img-cont"
+    *ngIf="materialDistributionDetails.material_delivery.voucher_image_url"
+  >
+    <img
+      [src]="materialDistributionDetails.material_delivery.voucher_image_url"
+      alt="voucher-image"
+      class="voucher-image"
+      (click)="openModal(template)"
+    />
+  </div>
+  <ng-template #template>
+    <div
+      class="voucher-img-cont text-center"
+      *ngIf="materialDistributionDetails.material_delivery.voucher_image_url"
+    >
+      <img
+        [src]="materialDistributionDetails.material_delivery.voucher_image_url"
+        alt="voucher-image"
+        class="voucher-image-model"
+      />
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modalRef.hide()">
+        Close
+      </button>
+    </div>
+  </ng-template>
+  <h5
+    class="text-center mb-5"
+    *ngIf="!materialDistributionDetails.material_delivery.voucher_image_url"
+  >
+    No images Found
+  </h5>
+  <hr class="mt-5" />
+  <h3 class="mb-3 mt-3">Material Images</h3>
+  <div class="d-flex gap-5">
+    <div
+      *ngFor="
+        let imageUrl of materialDistributionDetails.material_delivery
+          .material_image_url
+      "
+    >
+      <img
+        [src]="imageUrl"
+        alt="material-image"
+        class="voucher-image"
+        (click)="openModal(materialImage)"
+        *ngIf="materialDistributionDetails.material_delivery.material_image_url"
+      />
+      <ng-template #materialImage>
+        <div class="text-center">
+          <img
+            [src]="imageUrl"
+            alt="material-image"
+            class="voucher-image-model"
+          />
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="modalRef.hide()"
+          >
+            Close
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <h5
+    class="text-center mb-5"
+    *ngIf="
+      !materialDistributionDetails.material_delivery.material_image_url
+        .length ||
+      !materialDistributionDetails.material_delivery.material_image_url
+    "
+  >
+    No images Found
+  </h5>
+</div>

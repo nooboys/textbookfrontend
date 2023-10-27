@@ -1,0 +1,92 @@
+<ng-container>
+  <c-navbar
+    colorScheme="light"
+    color="white"
+    expand="lg"
+    placement="fixed-top"
+    class="bg-light px-sm-3 px-lg-4 px-xxl-5"
+  >
+    <c-container fluid>
+      <a cNavbarBrand routerLink="/"> Text Book Corporation </a>
+      <button [cNavbarToggler]="collapseRef"></button>
+      <div #collapseRef="cCollapse" navbar cCollapse>
+        <c-navbar-nav class="me-auto mb-2 mb-lg-0 d-lg-flex">
+          <c-nav-item>
+            <a
+              cNavLink
+              routerLink="/purchase_orders"
+              routerLinkActive="active"
+              class="nav-route-item ms-lg-4"
+              >Purchase Orders</a
+            >
+          </c-nav-item>
+          <c-nav-item>
+            <a
+              cNavLink
+              routerLink="/users"
+              routerLinkActive="active"
+              class="nav-route-item ms-lg-4"
+              >Users</a
+            >
+          </c-nav-item>
+          <c-nav-item>
+            <a
+              cNavLink
+              routerLink="/branches"
+              routerLinkActive="active"
+              class="nav-route-item ms-lg-4"
+              >Branches</a
+            >
+          </c-nav-item>
+          <c-nav-item>
+            <a
+              cNavLink
+              routerLink="/change_password"
+              routerLinkActive="active"
+              class="nav-route-item d-lg-none"
+              >Change Password</a
+            >
+          </c-nav-item>
+          <c-nav-item>
+            <a cNavLink (click)="onSignOut()" class="nav-route-item d-lg-none"
+              >Sign out</a
+            >
+          </c-nav-item>
+        </c-navbar-nav>
+        <c-dropdown
+          alignment="end"
+          variant="nav-item"
+          class="d-none d-lg-block"
+        >
+          <button cButton color="" [caret]="false" cDropdownToggle class="py-0">
+            <ngx-avatars
+              [gravatarId]="userDetails?.email"
+              [name]="userDetails?.name"
+            ></ngx-avatars>
+          </button>
+          <ul cDropdownMenu class="pt-0 pr-5 w-auto">
+            <li>
+              <h6 cDropdownHeader class="bg-light fw-semibold py-2">Account</h6>
+            </li>
+            <li>
+              <a
+                cDropdownItem
+                routerLink="/change_password"
+                class="drop-down-item"
+              >
+                <svg cIcon class="me-2" name="cilLockLocked"></svg>
+                Change Password
+              </a>
+            </li>
+            <li>
+              <a cDropdownItem (click)="onSignOut()" class="drop-down-item">
+                <svg cIcon class="me-2" name="cilLockLocked"></svg>
+                Sign out
+              </a>
+            </li>
+          </ul>
+        </c-dropdown>
+      </div>
+    </c-container>
+  </c-navbar>
+</ng-container>

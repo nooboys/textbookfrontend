@@ -1,0 +1,17 @@
+// Here you can add other styles
+
+.curser-pointer {
+  cursor: pointer;
+}
+
+.search {
+  .ng-select-container {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.header.header-sticky {
+  z-index: 1051;
+}

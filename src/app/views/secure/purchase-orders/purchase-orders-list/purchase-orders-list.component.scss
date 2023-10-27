@@ -1,0 +1,57 @@
+.btn-view {
+  background: #89f3b3;
+  transition: all 0.2s ease-in-out;
+  .bi-eye-fill {
+    color: #078439;
+  }
+}
+
+.view-button:hover {
+  background-color: #078439;
+  cursor: pointer;
+}
+.view-button:hover i {
+  color: white;
+}
+
+.bg-edit {
+  background: #bcbaf7;
+  svg {
+    color: #230b34;
+  }
+}
+
+.bg-delete {
+  background: #f795a0;
+  svg {
+    color: #830000;
+  }
+}
+
+.view-button {
+  border: none;
+}
+
+.input {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.input-button {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+select {
+  font-size: 16px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+}
+
+::-webkit-search-cancel-button {
+  cursor: pointer;
+}

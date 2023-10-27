@@ -1,0 +1,18 @@
+<c-modal [visible]="true" backdrop="static">
+  <c-modal-header>
+    <h5 cModalTitle>Delete</h5>
+    <button cButtonClose (click)="onClose()"></button>
+  </c-modal-header>
+  <c-modal-body>
+    <p>{{ text }}</p>
+    <p>{{ name }}</p>
+  </c-modal-body>
+  <c-modal-footer>
+    <button cButton color="success" variant="outline" (click)="onClose()">
+      Cancel
+    </button>
+    <button cButton color="danger" variant="outline" (click)="onConfirm()">
+      Delete
+    </button>
+  </c-modal-footer>
+</c-modal>
