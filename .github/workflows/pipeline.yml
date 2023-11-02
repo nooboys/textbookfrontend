@@ -30,9 +30,12 @@ jobs:
          with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Images login test
+        run: docker info
 
       - name: Build Images
-        run: docker build . --file Dockerfile --tag nooboys/textt:latest   
+        run: docker build . --file Dockerfile --tag nooboys/textt 
 
       - name: Images list  
         run: docker images
