@@ -18,15 +18,9 @@ RUN npm run build
 FROM nginx:latest
 #RUN rm -f /etc/nginx/conf.d/default.conf
 
-# Configure NGINX for your application directly in the Dockerfile
-RUN echo "server {" > /etc/nginx/conf.d/myapp.conf \
-    && echo "    listen 80;" >> /etc/nginx/conf.d/myapp.conf \
-    && echo "    server_name localhost;" >> /etc/nginx/conf.d/myapp.conf \
-    && echo "    location / {" >> /etc/nginx/conf.d/myapp.conf \
-    && echo "        root /usr/share/nginx/html;" >> /etc/nginx/conf.d/myapp.conf \
-    && echo "        index index.html;" >> /etc/nginx/conf.d/myapp.conf \
-    && echo "        try_files \$uri /index.html;" >> /etc/nginx/conf.d/myapp.conf \
-    && echo "}" >> /etc/nginx/conf.d/myapp.conf
+# Copy the NGINX configuration specific to your application
+COPY nginx.conf /etc/nginx/conf.d/
+
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
