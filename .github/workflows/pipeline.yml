@@ -35,7 +35,7 @@ jobs:
         run: docker info
 
       - name: Build Images
-        run: docker build . --file Dockerfile --tag nooboys/textt 
+        run: docker build . -f Dockerfile -t nooboys/textt:latest
 
       - name: Images list  
         run: docker images
