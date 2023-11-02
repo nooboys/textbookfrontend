@@ -1,28 +1,28 @@
 # Use an official Node.js runtime as the base image
-#FROM node:16.17.0
+FROM node:16.17.0 AS builder
 
 # Set the working directory within the container
-#WORKDIR /app
+WORKDIR /app
 
 # Copy the package.json and package-lock.json files to the container
-#COPY package*.json ./
+COPY package*.json ./
 
 # Install project dependencies
-#RUN npm install
+RUN npm install
 
 # Copy the rest of your application code to the container
-#COPY . .
+COPY . .
 
-#RUN npm run build 
+RUN npm run build 
 
 FROM nginx:latest
-#RUN rm -f /etc/nginx/conf.d/default.conf
+RUN rm -f /etc/nginx/conf.d/default.conf
 
 # Copy the NGINX configuration specific to your application
-#COPY nginx.conf /etc/nginx/conf.d/
+COPY nginx.conf /etc/nginx/conf.d/
 
 
-#COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Expose port 80 for Nginx
 EXPOSE 80
