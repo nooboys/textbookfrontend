@@ -24,6 +24,9 @@ COPY nginx.conf /etc/nginx/conf.d/
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
+# Remove the /app directory from the final stage
+RUN rm -rf /app
+
 # Expose port 80 for Nginx
 EXPOSE 80
 
