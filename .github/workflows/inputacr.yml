@@ -1,0 +1,39 @@
+name: Manually Deploy image to Azure Container App  
+
+on:
+    workflow_dispatch:
+        inputs:
+            containerVersionTag: 
+                description: 'The container to use from ACR. Eg. django-samples/app:sha-cf9e058'
+                required: true
+                type: string
+            environment:
+                description: Environment to deploy to
+                required: true
+                default: 'dev'
+                type: environment
+
+permissions: read-all  
+
+jobs:
+
+  deploy:
+    name: Deploy ${{ inputs.containerVersionTag }} to Container App in ${{ inputs.environment }}
+
+    runs-on: ubuntu-latest
+    environment: 
+        name: ${{ inputs.environment }}
+
+    permissions:
+      contents: read
+      # To report GitHub Actions status checks
+      statuses: write
+      checks: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: list files
+        run: ls -alt
+        
+          
